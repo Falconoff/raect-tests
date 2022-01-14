@@ -3,7 +3,7 @@ import { Component } from 'react';
 
 import './App.css';
 
-import FormTests from './Form/Form';
+import Form from './Form';
 
 class App extends Component {
   formSubmitHandler = data => {
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <main>
-        <FormTests onSubmitting={this.formSubmitHandler} />
+        <Form onSubmitting={this.formSubmitHandler} />
       </main>
     );
   }

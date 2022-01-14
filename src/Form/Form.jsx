@@ -1,12 +1,15 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { FormField, RadioBoxes, Button } from './Form.styled';
 
 const INITIAL_STATE = {
   firstName: '1',
   lastName: '2',
+  experience: 'middle',
+  agreement: false,
 };
 
-export default class FormTests extends Component {
+export default class Form extends Component {
   state = { ...INITIAL_STATE };
 
   firstNameId = nanoid(3);
@@ -27,15 +30,25 @@ export default class FormTests extends Component {
     this.formReset();
   };
 
+  handleAgreeChange = evt => {
+    console.log('check - evt.currentTarget.value:', evt.currentTarget.value);
+    console.log(
+      'check - evt.currentTarget.checked:',
+      evt.currentTarget.checked,
+    );
+
+    this.setState({ agreement: evt.currentTarget.checked });
+  };
+
   formReset = () => {
     this.setState({ ...INITIAL_STATE });
   };
 
   render() {
     return (
-      <div>
+      <FormField>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor={this.firstNameId}>Your first name</label>
+          <label htmlFor={this.firstNameId}>Your first name </label>
           <input
             id={this.firstNameId}
             type="text"
@@ -44,7 +57,9 @@ export default class FormTests extends Component {
             onChange={this.handleInputChange}
             required
           ></input>
-          <label htmlFor={this.lastNameId}>Your last name</label>
+
+          <br />
+          <label htmlFor={this.lastNameId}>Your last name </label>
           <input
             id={this.lastNameId}
             type="text"
@@ -53,24 +68,58 @@ export default class FormTests extends Component {
             onChange={this.handleInputChange}
           ></input>
 
-          <p>
+          <RadioBoxes>
             <label>
               junior
-              <input type="radio" name="1" value="junior" id="" />
+              <input
+                type="radio"
+                name="experience"
+                value="junior"
+                checked={this.state.experience === 'junior'}
+                onChange={this.handleInputChange}
+                id=""
+              />
             </label>
             <label>
               middle
-              <input type="radio" name="1" value="middle" id="" />
+              <input
+                type="radio"
+                name="experience"
+                value="middle"
+                checked={this.state.experience === 'middle'}
+                onChange={this.handleInputChange}
+                id=""
+              />
             </label>
             <label>
               senior
-              <input type="radio" name="1" value="senior" id="" />
+              <input
+                type="radio"
+                name="experience"
+                value="senior"
+                checked={this.state.experience === 'senior'}
+                onChange={this.handleInputChange}
+                id=""
+              />
             </label>
-          </p>
+          </RadioBoxes>
 
-          <button type="submit">Submit</button>
+          <label>
+            <input
+              type="checkbox"
+              name="agreement"
+              checked={this.state.agreement}
+              onChange={this.handleAgreeChange}
+              id=""
+            />{' '}
+            I agree
+          </label>
+
+          <Button type="submit" disabled={!this.state.agreement}>
+            Submit
+          </Button>
         </form>
-      </div>
+      </FormField>
     );
   }
 }

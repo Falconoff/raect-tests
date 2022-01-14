@@ -1,7 +1,10 @@
 main {
   padding: 20px;
 }
-
+body {
+  background-color: #999;
+}
+/*
 .App {
   text-align: center;
 }
@@ -40,3 +43,4 @@ main {
     transform: rotate(360deg);
   }
 }
+*/

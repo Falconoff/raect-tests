@@ -4,6 +4,18 @@
 !!! It's without deploy on GitHub Pages
 ```
 
+## npm
+
+[styled-components](https://styled-components.com/docs/basics#installation)
+
+- `npm install --save styled-components`
+- `import styled from 'styled-components';`
+- `const Button = styled.button...`
+
+[nanoid](https://github.com/ai/nanoid)
+
+#
+
 # Getting Started with Create React App
 
 This project was bootstrapped with
